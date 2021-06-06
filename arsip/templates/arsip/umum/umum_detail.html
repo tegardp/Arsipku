@@ -1,0 +1,50 @@
+{% extends 'layout/index.html' %} 
+{% block content%}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Backup dan Laporan</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tambah</h6>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nama"
+              placeholder="Masukan Nama"
+              value="{{object.nama}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Keterangan</label>
+            <textarea class="form-control" id="description" rows="3" disabled>{{object.keterangan}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="Kategori">Kategori</label>
+            <select class="form-control" id="Kategori" disabled>
+              <option value="{{object.kategori}}">{{object.kategori}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="periode">Periode</label>
+            <input type="text" class="form-control" id="periode" value="{{object.periode}}" disabled/>
+          </div>
+          <div class="form-group">
+            <a href="{{object.upload.url}}" download>Download file</a>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" href="{%url 'umum_list'%}">Back</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock%}

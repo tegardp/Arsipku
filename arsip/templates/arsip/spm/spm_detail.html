@@ -1,0 +1,98 @@
+{% extends 'layout/index.html' %} 
+{% block content%}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Surat Perintah Membayar</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <div class="form-group">
+            <label for="nomor">Nomor SPM</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nomor"
+              value="{{object.nomor_spm}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="jenis">Jenis SPM</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jenis"
+              value="{{object.jenis_spm}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="tanggal">Tanggal SPM</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tanggal"
+              value="{{object.tanggal_spm}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="nomor-sp2d">Nomor SP2D</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nomor-sp2d"
+              value="{{object.nomor_sp2d}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="tanggal-sp2d">Tanggal SP2D</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tanggal-sp2d"
+              value="{{object.tanggal_sp2d}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="potongan">Jumlah Potongan</label>
+            <input
+              type="text"
+              class="form-control"
+              id="potongan"
+              value="{{object.jumlah_potongan}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="jumlah_bersih">Jumlah Bersih</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jumlah_bersih"
+              value="{{object.jumlah_bersih}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <a href="{{object.file_spm.url}}" download>Download file SPM</a>
+          </div>
+          <div class="form-group">
+            <a href="{{object.file_sp2d.url}}" download>Download file SP2D</a>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" href="{%url 'spm_list'%}">Back</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock%}

@@ -1,0 +1,42 @@
+{% extends 'layout/index.html' %} 
+{% block content%}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">DIPA</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <div class="form-group">
+            <label for="uraian">Uraian</label>
+            <input
+              type="text"
+              class="form-control"
+              id="uraian"
+              placeholder="Masukan uraian"
+              value="{{object.uraian_dipa}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <a href="{{object.file_pok}}" download>Download file POK</a>
+          </div>
+          <div class="form-group">
+            <a href="{{object.file_adk}}" download>Download file ADK</a>
+          </div>
+          <div class="form-group">
+            <a href="{{object.file_dipa}}" download>Download file DIPA</a>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" href="{%url 'dipa_list'%}">Back</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock%}

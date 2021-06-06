@@ -1,0 +1,59 @@
+{% extends 'layout/index.html' %} 
+{% block content%}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Surat Keputusan Pengelola Anggaran</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <div class="form-group">
+            <label for="nomor">Nomor</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nama"
+              value="{{object.nomor}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="perihal">Perihal</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nama"
+              value="{{object.perihal}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="keterangan">Keterangan</label>
+            <textarea class="form-control" id="description" rows="3" disabled>{{object.keterangan}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="tanggal_surat">Tanggal Surat</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nama"
+              value="{{object.tanggal_surat}}"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <a href="{{object.upload.url}}" download>Download file</a>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" href="{%url 'skpa_list'%}">Back</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock%}

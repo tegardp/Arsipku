@@ -1,0 +1,23 @@
+{% extends 'layout/index.html' %} 
+{% block content%}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Survei dan Laporan</h1>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+      </div>
+      <div class="card-body">
+        <form enctype="multipart/form-data" method="post">
+          {% csrf_token %}
+          {{ form.as_p}}
+          <a class="btn btn-danger" href="{%url 'daftar_sampel_list'%}">Back</a>
+          <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock%}
