@@ -18,7 +18,7 @@ class UmumList(ListView):
 
 class UmumCreate(CreateView):
     model = Umum
-    fields = ['nama', 'keterangan', 'kategori', 'periode', 'upload']
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
     template_name = 'arsip/umum/umum_form.html'
 
     success_url = reverse_lazy('umum_list')
@@ -40,9 +40,15 @@ class UmumDetail(DetailView):
 
 class UmumUpdate(UpdateView):
     model = Umum
-    fields = ['nama', 'keterangan', 'kategori', 'periode', 'upload']
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
     template_name = 'arsip/umum/umum_form.html'
     success_url = reverse_lazy('umum_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
 
 
 class UmumDelete(DeleteView):
@@ -98,6 +104,12 @@ class SkpaUpdate(UpdateView):
     template_name = 'arsip/skpa/skpa_form.html'
     success_url = reverse_lazy('skpa_list')
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tanggal_surat'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
+
 
 class SkpaDelete(DeleteView):
     model = Surat
@@ -125,7 +137,7 @@ class DipaList(ListView):
 
 class DipaCreate(CreateView):
     model = Dipa
-    fields = ['uraian_dipa', 'file_pok', 'file_adk', 'file_dipa']
+    fields = ['uraian_dipa', 'tanggal', 'file_pok', 'file_adk', 'file_dipa']
     template_name = 'arsip/dipa/dipa_form.html'
 
     success_url = reverse_lazy('dipa_list')
@@ -133,6 +145,12 @@ class DipaCreate(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super(DipaCreate, self).form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tanggal'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
 
 
 class DipaDetail(DetailView):
@@ -142,9 +160,15 @@ class DipaDetail(DetailView):
 
 class DipaUpdate(UpdateView):
     model = Dipa
-    fields = ['uraian_dipa', 'periode', 'file_pok', 'file_adk', 'file_dipa']
+    fields = ['uraian_dipa', 'tanggal', 'file_pok', 'file_adk', 'file_dipa']
     template_name = 'arsip/dipa/dipa_form.html'
     success_url = reverse_lazy('dipa_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tanggal'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
 
 
 class DipaDelete(DeleteView):
@@ -231,7 +255,7 @@ class TupList(ListView):
 
 class TupCreate(CreateView):
     model = Tup
-    fields = ['nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['nomor', 'kategori', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
 
     success_url = reverse_lazy('tup_list')
@@ -254,9 +278,15 @@ class TupDetail(DetailView):
 
 class TupUpdate(UpdateView):
     model = Tup
-    fields = ['nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['nomor', 'kategori', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
     success_url = reverse_lazy('tup_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['tanggal_surat'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
 
 
 class TupDelete(DeleteView):
@@ -313,6 +343,12 @@ class SurveiUpdate(UpdateView):
     template_name = 'arsip/survei/survei_form.html'
     success_url = reverse_lazy('survei_list')
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
+
 
 class SurveiDelete(DeleteView):
     model = Survei
@@ -367,6 +403,12 @@ class DaftarSampelUpdate(UpdateView):
               'wilayah', 'penanggung_jawab', 'keterangan', 'upload']
     template_name = 'arsip/daftar-sampel/daftarsampel_form.html'
     success_url = reverse_lazy('daftar_sampel_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
 
 
 class DaftarSampelDelete(DeleteView):

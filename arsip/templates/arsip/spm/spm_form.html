@@ -18,7 +18,7 @@
         <form enctype="multipart/form-data" method="post">
           {% csrf_token %}
           {{ form.as_p}}
-          <a class="btn btn-danger" href="{%url 'daftar_sampel_list'%}">Back</a>
+          <a class="btn btn-danger" href="{%url 'spm_list'%}">Back</a>
 
           <input class="btn btn-primary" type="submit" value="Submit">
         </form>

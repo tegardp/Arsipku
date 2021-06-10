@@ -16,7 +16,6 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                          <th>Nama</th>
                           <th>Kategori</th>
                           <th>Periode</th>
                           <th>Aksi</th>
@@ -29,21 +28,20 @@
                       {% for object in object_list %}
                       {% if object.approval == True or current_user.is_superuser %}
                       <tr>
-                          <td>{{ object.nama }}</td>
                           <td>{{ object.kategori }}</td>
                           <td>{{ object.periode }}</td>
                           <td class="text-center">
                               {% if current_user.is_superuser %}
-                              <a href="{{object.upload.url}}" class="btn btn-primary" data-toggle="modal" title="Download" download><i class="fas fa-download"></i></a>
-                              <a href="{% url 'umum_detail' object.id %}" class="btn btn-success" data-toggle="modal" title="Detail"><i class="fas fa-eye"></i></a>
+                              <a href="{{object.upload.url}}" class="btn btn-primary" data-toggle="tooltip" title="Download" download><i class="fas fa-download"></i></a>
+                              <a href="{% url 'umum_detail' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Detail"><i class="fas fa-eye"></i></a>
                               {% endif %}
-                              <a href="{% url 'umum_update' object.id %}" class="btn btn-info" data-toggle="modal" title="Edit"><i class="fas fa-edit"></i></a>
+                              <a href="{% url 'umum_update' object.id %}" class="btn btn-info" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
                               <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" title="Hapus"><i class="fas fa-trash"></i></a>
                           </td>
                           {% if current_user.is_superuser %}
                           <td>
                               {% if object.approval == False %}
-                              <a href="{% url 'umum_approve' object.id %}" class="btn btn-success" data-toggle="modal" title="Setuju"><i class="fas fa-check"></i></a>
+                              <a href="{% url 'umum_approve' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Setuju"><i class="fas fa-check"></i></a>
                               <a href="{% url 'umum_delete' object.id %}" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" title="Tolak"><i class="fas fa-times"></i></a>
                               {% endif %}
                           </td>

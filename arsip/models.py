@@ -18,10 +18,9 @@ class Umum(models.Model):
         ('Berita Acara Rekonsiliasi e-Rekon', 'Berita Acara Rekonsiliasi e-Rekon'),
         ('Form Rencana Aksi', 'Form Rencana Aksi'),
     )
-    nama = models.CharField(max_length=200, null=True)
-    keterangan = models.CharField(max_length=200, null=True, blank=True)
     kategori = models.CharField(max_length=200, null=True, choices=KATEGORI)
     periode = models.DateField(null=True)
+    keterangan = models.CharField(max_length=200, null=True, blank=True)
     upload = models.FileField(upload_to='file_upload/Umum/', null=True)
     date_created = models.DateField(auto_now_add=True)
     approval = models.BooleanField(default=False)
@@ -53,7 +52,7 @@ class Surat(models.Model):
 
 class Dipa(models.Model):
     uraian_dipa = models.CharField(max_length=200,null=True)
-    periode = models.DateField(null=True)
+    tanggal = models.DateField(null=True)
     file_pok = models.FileField(upload_to='file_upload/Dipa/POK', null=True)
     file_adk = models.FileField(upload_to='file_upload/Dipa/ADK', null=True)
     file_dipa = models.FileField(upload_to='file_upload/Dipa/DIPA', null=True)
@@ -93,7 +92,12 @@ class Spm(models.Model):
         return self.nomor_spm
 
 class Tup(models.Model):
+    KATEGORI = (
+        ('Surat Permohonan TUP', 'Surat Permohonan TUP'),
+        ('Surat Persetujuan TUP', 'Surat Persetujuan TUP'),
+    )
     nomor = models.CharField(max_length=200,null=True)
+    kategori = models.CharField(max_length=200,null=True,choices=KATEGORI)
     tanggal_surat = models.DateField(null=True)
     jumlah_tup = models.IntegerField(null=True)
     keterangan = models.TextField(null=True)
@@ -113,11 +117,17 @@ class Survei(models.Model):
     KATEGORI = (
         ('Kuesioner', 'Kuesioner'),
         ('Berita Acara Respon Rate', 'Berita Acara Respon Rate'),
-        ('Laporan Kegiatan', 'Laporan Kegiatan'),
+    )
+    PENANGGUNG_JAWAB = (
+        ('Statistik Sosial', 'Statistik Sosial'),
+        ('Statistik Produksi', 'Statistik Produksi'),
+        ('Statistik Distribusi', 'Statistik Distribusi'),
+        ('Neraca Wilayah dan Analisis Statistik', 'Neraca Wilayah dan Analisis Statistik'),
+        ('Integrasi Pengolahan dan Diseminasi Statistik', 'Integrasi Pengolahan dan Diseminasi Statistik'),
     )
     nama_survei = models.CharField(max_length=200, null=True)
     periode = models.DateField(null=True)
-    penanggung_jawab = models.CharField(max_length=200, null=True)
+    penanggung_jawab = models.CharField(max_length=200, null=True, choices=PENANGGUNG_JAWAB)
     keterangan = models.CharField(max_length=200, null=True, blank=True)
     kategori = models.CharField(max_length=200, null=True, choices=KATEGORI)
     upload = models.FileField(upload_to='file_upload/Survei/', null=True)
