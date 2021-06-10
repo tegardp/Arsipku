@@ -34,18 +34,18 @@
                           <td>{{ object.periode }}</td>
                           <td class="text-center">
                               {% if current_user.is_superuser %}
-                              <a href="{{object.upload.url}}" class="btn btn-primary" download><i class="fas fa-download"></i></a>
-                              <a href="{% url 'daftar_sampel_detail' object.id %}" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                              <a href="{{object.upload.url}}" class="btn btn-primary"  data-toggle="modal" title="Download" download><i class="fas fa-download"></i></a>
+                              <a href="{% url 'daftar_sampel_detail' object.id %}" class="btn btn-success"  data-toggle="modal" title="Detail" ><i class="fas fa-eye"></i></a>
                               {% endif %}
-                              <a href="{% url 'daftar_sampel_update' object.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                              <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></a>
+                              <a href="{% url 'daftar_sampel_update' object.id %}" class="btn btn-info"  data-toggle="modal" title="Edit" ><i class="fas fa-edit"></i></a>
+                              <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"  data-toggle="modal" title="Hapus" ><i class="fas fa-trash"></i></a>
                           </td>
                           {% if current_user.is_superuser %}
                           <td>
                             {% if object.approval == False %}
 
-                              <a href="{% url 'daftar_sampel_approve' object.id %}" class="btn btn-success"><i class="fas fa-check"></i></a>
-                              <a href="{% url 'daftar_sampel_delete' object.id %}" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-times"></i></a>
+                              <a href="{% url 'daftar_sampel_approve' object.id %}" class="btn btn-success" data-toggle="modal" title="Setuju" ><i class="fas fa-check"></i></a>
+                              <a href="{% url 'daftar_sampel_delete' object.id %}" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"   data-toggle="tooltip" title="Tolak" ><i class="fas fa-times"></i></a>
                               {% endif %}
                           </td>
                           {% endif %}

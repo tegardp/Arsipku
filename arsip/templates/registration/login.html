@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     
@@ -14,13 +15,16 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background-image: url("{% static 'img/login-background.jpg'%}");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #e4e4e4;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -38,7 +42,7 @@
 		}
 
 		#form-title{
-			color: #fff;
+			color: #444;
 			
 		}
 
@@ -55,7 +59,7 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #f7ba5b !important;
+			background: #33ccff !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
