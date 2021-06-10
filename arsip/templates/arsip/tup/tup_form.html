@@ -3,13 +3,17 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Surat Permohonan TUP</h1>
+  <h1 class="h3 mb-2 text-gray-800">Surat Persetujuan TUP</h1>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-      <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
-      </div>
+    <div class="card-header py-3">
+      {% if 'update' in request.path %}
+        <h6 class="m-0 font-weight-bold text-primary">Edit Data</h6>
+      {% else %}
+        <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+      {% endif %}
+    </div>
       <div class="card-body">
         <form enctype="multipart/form-data" method="post">
           {% csrf_token %}

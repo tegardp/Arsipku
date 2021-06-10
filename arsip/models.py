@@ -68,7 +68,7 @@ class Dipa(models.Model):
         super().delete(*args, **kwargs)
 
     def __str__(self):
-        return self.nama
+        return self.uraian_dipa
 
 class Spm(models.Model):
     nomor_spm = models.CharField(max_length=200,null=True)

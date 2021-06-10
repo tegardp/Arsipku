@@ -8,7 +8,7 @@
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Detail</h6>
       </div>
       <div class="card-body">
         <form action="">
@@ -83,10 +83,18 @@
             />
           </div>
           <div class="form-group">
+            <label for="uploader">Author</label>
+            <input type="text" class="form-control" id="uploader" value="{{object.author}}" disabled/>
+          </div>
+          <div class="form-group">
             <a href="{{object.file_spm.url}}" download>Download file SPM</a>
           </div>
           <div class="form-group">
             <a href="{{object.file_sp2d.url}}" download>Download file SP2D</a>
+          </div>
+          <div class="form-group">
+            <label for="uploader">Author</label>
+            <input type="text" class="form-control" id="uploader" value="{{object.author}}" disabled/>
           </div>
           <div class="form-group">
             <a class="btn btn-primary" href="{%url 'spm_list'%}">Back</a>
