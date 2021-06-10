@@ -255,7 +255,7 @@ class TupList(ListView):
 
 class TupCreate(CreateView):
     model = Tup
-    fields = ['nomor', 'kategori', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['kategori', 'nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
 
     success_url = reverse_lazy('tup_list')
@@ -278,7 +278,7 @@ class TupDetail(DetailView):
 
 class TupUpdate(UpdateView):
     model = Tup
-    fields = ['nomor', 'kategori', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['kategori', 'nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
     success_url = reverse_lazy('tup_list')
 
@@ -315,7 +315,7 @@ class SurveiList(ListView):
 
 class SurveiCreate(CreateView):
     model = Survei
-    fields = ['nama_survei', 'kategori', 'periode',
+    fields = ['kategori', 'nama_survei', 'periode',
               'penanggung_jawab', 'keterangan', 'upload']
     template_name = 'arsip/survei/survei_form.html'
 
@@ -338,7 +338,7 @@ class SurveiDetail(DetailView):
 
 class SurveiUpdate(UpdateView):
     model = Survei
-    fields = ['nama_survei', 'kategori', 'periode',
+    fields = ['kategori', 'nama_survei', 'periode',
               'penanggung_jawab', 'keterangan', 'upload']
     template_name = 'arsip/survei/survei_form.html'
     success_url = reverse_lazy('survei_list')
@@ -376,7 +376,7 @@ class DaftarSampelList(ListView):
 
 class DaftarSampelCreate(CreateView):
     model = DaftarSampel
-    fields = ['nama_survei', 'kategori', 'periode',
+    fields = ['kategori', 'nama_survei', 'periode',
               'wilayah', 'penanggung_jawab', 'keterangan', 'upload']
     template_name = 'arsip/daftar-sampel/daftarsampel_form.html'
 
@@ -399,7 +399,7 @@ class DaftarSampelDetail(DetailView):
 
 class DaftarSampelUpdate(UpdateView):
     model = DaftarSampel
-    fields = ['nama_survei', 'kategori', 'periode',
+    fields = ['kategori', 'nama_survei', 'periode',
               'wilayah', 'penanggung_jawab', 'keterangan', 'upload']
     template_name = 'arsip/daftar-sampel/daftarsampel_form.html'
     success_url = reverse_lazy('daftar_sampel_list')

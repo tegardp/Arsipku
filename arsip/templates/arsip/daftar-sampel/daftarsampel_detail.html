@@ -13,6 +13,12 @@
       <div class="card-body">
         <form action="">
           <div class="form-group">
+            <label for="Kategori">Kategori</label>
+            <select class="form-control" id="Kategori" disabled>
+              <option value="{{object.kategori}}">{{object.kategori}}</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="nama_survei">Nama Survei</label>
             <input
               type="text"
@@ -24,18 +30,20 @@
             />
           </div>
           <div class="form-group">
-            <label for="description">Keterangan</label>
-            <textarea class="form-control" id="description" rows="3" disabled>{{object.keterangan}}</textarea>
-          </div>
-          <div class="form-group">
-            <label for="Kategori">Kategori</label>
-            <select class="form-control" id="Kategori" disabled>
-              <option value="{{object.kategori}}">{{object.kategori}}</option>
-            </select>
-          </div>
-          <div class="form-group">
             <label for="periode">Periode</label>
             <input type="text" class="form-control" id="periode" value="{{object.periode}}" disabled/>
+          </div>
+          <div class="form-group">
+            <label for="wilayah">Wilayah</label>
+            <input type="text" class="form-control" id="wilayah" value="{{object.wilayah}}" disabled/>
+          </div>
+          <div class="form-group">
+            <label for="penanggung_jawab">Penanggung Jawab</label>
+            <input type="text" class="form-control" id="penanggung_jawab" value="{{object.penanggung_jawab}}" disabled/>
+          </div>
+          <div class="form-group">
+            <label for="description">Keterangan</label>
+            <textarea class="form-control" id="description" rows="3" disabled>{{object.keterangan}}</textarea>
           </div>
           <div class="form-group">
             <label for="uploader">Author</label>

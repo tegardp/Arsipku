@@ -111,7 +111,7 @@ class Tup(models.Model):
         super().delete(*args, **kwargs)
 
     def __str__(self):
-        return self.nama
+        return self.nomor
 
 class Survei(models.Model):
     KATEGORI = (
@@ -148,10 +148,17 @@ class DaftarSampel(models.Model):
         ('Daftar Sampel Rumah Tangga/Non, Usaha/Non', 'Daftar Sampel Rumah Tangga/Non, Usaha/Non'),
         ('Laporan Kegiatan', 'Laporan Kegiatan'),
     )
+    PENANGGUNG_JAWAB = (
+        ('Statistik Sosial', 'Statistik Sosial'),
+        ('Statistik Produksi', 'Statistik Produksi'),
+        ('Statistik Distribusi', 'Statistik Distribusi'),
+        ('Neraca Wilayah dan Analisis Statistik', 'Neraca Wilayah dan Analisis Statistik'),
+        ('Integrasi Pengolahan dan Diseminasi Statistik', 'Integrasi Pengolahan dan Diseminasi Statistik'),
+    )
     nama_survei = models.CharField(max_length=200, null=True)
     periode = models.DateField(null=True)
     wilayah = models.CharField(max_length=200, null=True)
-    penanggung_jawab = models.CharField(max_length=200, null=True)
+    penanggung_jawab = models.CharField(max_length=200, null=True, choices=PENANGGUNG_JAWAB)
     keterangan = models.CharField(max_length=200, null=True, blank=True)
     kategori = models.CharField(max_length=200, null=True, choices=KATEGORI)
     upload = models.FileField(upload_to='file_upload/Daftar_Sampel/', null=True)
