@@ -125,6 +125,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-LOGIN_REDIRECT_URL = 'umum_list'
-LOGOUT_REDIRECT_URL = 'umum_list'
+LOGIN_REDIRECT_URL = 'backup_aplikasi_list'
+LOGOUT_REDIRECT_URL = 'backup_aplikasi_list'
 LOGIN_URL = 'login'
