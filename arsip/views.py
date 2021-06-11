@@ -57,10 +57,10 @@ class BackupAplikasiDelete(DeleteView):
 
 
 def BackupAplikasiApprove(request, pk):
-    laporan_bmn = LaporanBmn.objects.get(pk=pk)
-    laporan_bmn.approval = 1
-    laporan_bmn.save()
-    return redirect('laporan_bmn_list')
+    backup_aplikasi = BackupAplikasi.objects.get(pk=pk)
+    backup_aplikasi.approval = 1
+    backup_aplikasi.save()
+    return redirect('backup_aplikasi_list')
 
 #
 class LaporanBmnList(ListView):
