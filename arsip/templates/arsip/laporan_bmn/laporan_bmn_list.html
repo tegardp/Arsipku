@@ -3,7 +3,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">DIPA</h1>
+  <h1 class="h3 mb-2 text-gray-800">Laporan BMN dan Keuangan</h1>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -11,13 +11,13 @@
           <h6 class="m-0 font-weight-bold text-primary">Arsip</h6>
       </div>
       <div class="card-body">
-          <a class="btn btn-primary mb-4 float-right" href="{% url 'dipa_create' %}">Tambah Data</a>
+          <a class="btn btn-primary mb-4 float-right" href="{% url 'laporan_bmn_create' %}">Tambah Data</a>
           <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
-                          <th>Uraian</th>
-                          <th>Tanggal</th>
+                          <th>Kategori</th>
+                          <th>Periode</th>
                           <th>Aksi</th>
                           {% if current_user.is_superuser %}
                           <th>Approval</th>
@@ -28,24 +28,25 @@
                       {% for object in object_list %}
                       {% if object.approval == True or current_user.is_superuser %}
                       <tr>
-                          <td>{{ object.uraian_dipa }}</td>
-                          <td>{{ object.tanggal }}</td>
+                          <td>{{ object.kategori }}</td>
+                          <td>{{ object.periode }}</td>
                           <td class="text-center">
                               {% if current_user.is_superuser %}
-                              <a href="{% url 'dipa_detail' object.id %}" class="btn btn-success"  data-toggle="tooltip" title="Detail" ><i class="fas fa-eye"></i></a>
+                              <a href="{{object.upload.url}}" class="btn btn-primary" data-toggle="tooltip" title="Download" download><i class="fas fa-download"></i></a>
+                              <a href="{% url 'laporan_bmn_detail' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Detail"><i class="fas fa-eye"></i></a>
                               {% endif %}
-                              <a href="{% url 'dipa_update' object.id %}" class="btn btn-info"   data-toggle="tooltip" title="Edit" ><i class="fas fa-edit"></i></a>
-                              <a href="{% url 'dipa_delete' object.id %}" class="btn btn-danger" title="Hapus" ><i class="fas fa-trash"></i></a>
+                              <a href="{% url 'laporan_bmn_update' object.id %}" class="btn btn-info" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
+                              <a href="{% url 'laporan_bmn_delete' object.id %}" class="btn btn-danger"title="Hapus"><i class="fas fa-trash"></i></a>
                           </td>
                           {% if current_user.is_superuser %}
                           <td>
-                            {% if object.approval == False %}
-
-                              <a href="{% url 'dipa_approve' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Setuju" ><i class="fas fa-check"></i></a>
-                              <a href="{% url 'dipa_delete' object.id %}" class="btn btn-danger" ><i class="fas fa-times"></i></a>
+                              {% if object.approval == False %}
+                              <a href="{% url 'laporan_bmn_approve' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Setuju"><i class="fas fa-check"></i></a>
+                              <a href="{% url 'laporan_bmn_delete' object.id %}" class="btn btn-danger"title="Tolak"><i class="fas fa-times"></i></a>
                               {% endif %}
                           </td>
                           {% endif %}
+                          <!-- Modal -->
                       </tr>
                       {% endif %}
                       {% endfor %}

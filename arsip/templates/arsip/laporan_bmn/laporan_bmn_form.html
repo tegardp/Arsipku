@@ -3,7 +3,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Backup dan Laporan</h1>
+  <h1 class="h3 mb-2 text-gray-800">Laporan BMN dan Keuangan</h1>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -18,7 +18,7 @@
         <form enctype="multipart/form-data" method="post">
           {% csrf_token %}
           {{ form.as_p}}
-          <a href="{% url 'umum_list' %}" class="btn btn-danger">Back</a>
+          <a href="{% url 'laporan_bmn_list' %}" class="btn btn-danger">Back</a>
           <input class="btn btn-primary" type="submit" value="Submit">
         </form>
       </div>

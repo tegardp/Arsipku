@@ -2,19 +2,56 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-class Umum(models.Model):
+class BackupAplikasi(models.Model):
     KATEGORI = (
         ('Backup Aplikasi SAS', 'Backup Aplikasi SAS'),
         ('Backup Aplikasi Persediaan', 'Backup Aplikasi Persediaan'),
         ('Backup Aplikasi SIMAK BMN', 'Backup Aplikasi SIMAK BMN'),
         ('Backup Aplikasi GPP', 'Backup Aplikasi GPP'),
         ('Backup Aplikasi SAIBA', 'Backup Aplikasi SAIBA'),
+    )
+    kategori = models.CharField(max_length=200, null=True, choices=KATEGORI)
+    periode = models.DateField(null=True)
+    keterangan = models.CharField(max_length=200, null=True, blank=True)
+    upload = models.FileField(upload_to='file_upload/BackupAplikasi/', null=True)
+    date_created = models.DateField(auto_now_add=True)
+    approval = models.BooleanField(default=False)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+
+    def delete(self, *args, **kwargs):
+        self.upload.delete()
+        super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.nama
+
+# Create your models here.
+class LaporanBmn(models.Model):
+    KATEGORI = (
         ('Laporan Kondisi Barang', 'Laporan Kondisi Barang'),
         ('Laporan Pengadaan Barang dan Jasa', 'Laporan Pengadaan Barang dan Jasa'),
         ('LPJ Perbendaharaan Pengeluaran', 'LPJ Perbendaharaan Pengeluaran'),
         ('Buku Kas Umum', 'Buku Kas Umum'),
         ('Buku Pembantu Pajak', 'Buku Pembantu Pajak'),
         ('Buku Besar Kas', 'Buku Besar Kas'),
+    )
+    kategori = models.CharField(max_length=200, null=True, choices=KATEGORI)
+    periode = models.DateField(null=True)
+    keterangan = models.CharField(max_length=200, null=True, blank=True)
+    upload = models.FileField(upload_to='file_upload/Umum/', null=True)
+    date_created = models.DateField(auto_now_add=True)
+    approval = models.BooleanField(default=False)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+
+    def delete(self, *args, **kwargs):
+        self.upload.delete()
+        super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.nama
+
+class LaporanKinerja(models.Model):
+    KATEGORI = (
         ('Berita Acara Rekonsiliasi e-Rekon', 'Berita Acara Rekonsiliasi e-Rekon'),
         ('Form Rencana Aksi', 'Form Rencana Aksi'),
     )
@@ -32,6 +69,7 @@ class Umum(models.Model):
 
     def __str__(self):
         return self.nama
+
 
 class Surat(models.Model):
     nomor = models.CharField(max_length=200,null=True)

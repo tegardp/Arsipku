@@ -6,12 +6,26 @@ from django.contrib.auth.decorators import login_required
 from .views import *
 
 urlpatterns = [
-    path('', login_required(UmumList.as_view()), name='umum_list'),
-    path('umum/create', login_required(UmumCreate.as_view()), name='umum_create'),
-    path('umum/detail/<int:pk>', login_required(UmumDetail.as_view()), name='umum_detail'),
-    path('umum/update/<int:pk>', login_required(UmumUpdate.as_view()), name='umum_update'),
-    path('umum/delete/<int:pk>', login_required(UmumDelete.as_view()), name='umum_delete'),
-    path('umum/approve/<int:pk>', login_required(UmumApprove), name='umum_approve'),
+    path('', login_required(BackupAplikasiList.as_view()), name='backup_aplikasi_list'),
+    path('backup_aplikasi/create', login_required(BackupAplikasiCreate.as_view()), name='backup_aplikasi_create'),
+    path('backup_aplikasi/detail/<int:pk>', login_required(BackupAplikasiDetail.as_view()), name='backup_aplikasi_detail'),
+    path('backup_aplikasi/update/<int:pk>', login_required(BackupAplikasiUpdate.as_view()), name='backup_aplikasi_update'),
+    path('backup_aplikasi/delete/<int:pk>', login_required(BackupAplikasiDelete.as_view()), name='backup_aplikasi_delete'),
+    path('backup_aplikasi/approve/<int:pk>', login_required(BackupAplikasiApprove), name='backup_aplikasi_approve'),
+    
+    path('laporan_bmn', login_required(LaporanBmnList.as_view()), name='laporan_bmn_list'),
+    path('laporan_bmn/create', login_required(LaporanBmnCreate.as_view()), name='laporan_bmn_create'),
+    path('laporan_bmn/detail/<int:pk>', login_required(LaporanBmnDetail.as_view()), name='laporan_bmn_detail'),
+    path('laporan_bmn/update/<int:pk>', login_required(LaporanBmnUpdate.as_view()), name='laporan_bmn_update'),
+    path('laporan_bmn/delete/<int:pk>', login_required(LaporanBmnDelete.as_view()), name='laporan_bmn_delete'),
+    path('laporan_bmn/approve/<int:pk>', login_required(LaporanBmnApprove), name='laporan_bmn_approve'),
+    
+    path('laporan_kinerja', login_required(LaporanKinerjaList.as_view()), name='laporan_kinerja_list'),
+    path('laporan_kinerja/create', login_required(LaporanKinerjaCreate.as_view()), name='laporan_kinerja_create'),
+    path('laporan_kinerja/detail/<int:pk>', login_required(LaporanKinerjaDetail.as_view()), name='laporan_kinerja_detail'),
+    path('laporan_kinerja/update/<int:pk>', login_required(LaporanKinerjaUpdate.as_view()), name='laporan_kinerja_update'),
+    path('laporan_kinerja/delete/<int:pk>', login_required(LaporanKinerjaDelete.as_view()), name='laporan_kinerja_delete'),
+    path('laporan_kinerja/approve/<int:pk>', login_required(LaporanKinerjaApprove), name='laporan_kinerja_approve'),
 
     path('skpa', login_required(SkpaList.as_view()), name='skpa_list'),
     path('skpa/create', login_required(SkpaCreate.as_view()), name='skpa_create'),

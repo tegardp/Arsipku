@@ -38,14 +38,13 @@
                               <a href="{% url 'survei_detail' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Detail"><i class="fas fa-eye"></i></a>
                               {% endif %}
                               <a href="{% url 'survei_update' object.id %}" class="btn btn-info" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                              <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" title="Hapus"><i class="fas fa-trash"></i></a>
+                              <a href="{% url 'survei_delete' object.id %}" class="btn btn-danger" title="Hapus"><i class="fas fa-trash"></i></a>
                           </td>
                           {% if current_user.is_superuser %}
                           <td>
                             {% if object.approval == False %}
-
                               <a href="{% url 'survei_approve' object.id %}" class="btn btn-success" data-toggle="tooltip" title="Setuju"><i class="fas fa-check"></i></a>
-                              <a href="{% url 'survei_delete' object.id %}" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" title="tolak"><i class="fas fa-times"></i></a>
+                              <a href="{% url 'survei_delete' object.id %}" class="btn btn-danger" title="tolak"><i class="fas fa-times"></i></a>
                               {% endif %}
                           </td>
                           {% endif %}

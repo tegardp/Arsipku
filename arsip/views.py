@@ -5,10 +5,9 @@ from django.urls import reverse_lazy
 from django import forms
 
 
-# Umum View
-class UmumList(ListView):
-    model = Umum
-    template_name = 'arsip/umum/umum_list.html'
+class BackupAplikasiList(ListView):
+    model = BackupAplikasi
+    template_name = 'arsip/backup_aplikasi/backup_aplikasi_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -16,16 +15,16 @@ class UmumList(ListView):
         return context
 
 
-class UmumCreate(CreateView):
-    model = Umum
+class BackupAplikasiCreate(CreateView):
+    model = BackupAplikasi
     fields = ['kategori', 'periode', 'keterangan', 'upload']
-    template_name = 'arsip/umum/umum_form.html'
+    template_name = 'arsip/backup_aplikasi/backup_aplikasi_form.html'
 
-    success_url = reverse_lazy('umum_list')
+    success_url = reverse_lazy('backup_aplikasi_list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super(UmumCreate, self).form_valid(form)
+        return super(BackupAplikasiCreate, self).form_valid(form)
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -33,16 +32,16 @@ class UmumCreate(CreateView):
         return form
 
 
-class UmumDetail(DetailView):
-    model = Umum
-    template_name = 'arsip/umum/umum_detail.html'
+class BackupAplikasiDetail(DetailView):
+    model = BackupAplikasi
+    template_name = 'arsip/backup_aplikasi/backup_aplikasi_detail.html'
 
 
-class UmumUpdate(UpdateView):
-    model = Umum
+class BackupAplikasiUpdate(UpdateView):
+    model = BackupAplikasi
     fields = ['kategori', 'periode', 'keterangan', 'upload']
-    template_name = 'arsip/umum/umum_form.html'
-    success_url = reverse_lazy('umum_list')
+    template_name = 'arsip/backup_aplikasi/backup_aplikasi_form.html'
+    success_url = reverse_lazy('backup_aplikasi_list')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -51,16 +50,134 @@ class UmumUpdate(UpdateView):
         return form
 
 
-class UmumDelete(DeleteView):
-    model = Umum
-    success_url = reverse_lazy('umum_list')
+class BackupAplikasiDelete(DeleteView):
+    model = BackupAplikasi
+    template_name = 'arsip/backup_aplikasi/backup_aplikasi_confirm_delete.html'
+    success_url = reverse_lazy('backup_aplikasi_list')
 
 
-def UmumApprove(request, pk):
-    umum = Umum.objects.get(pk=pk)
-    umum.approval = 1
-    umum.save()
-    return redirect('umum_list')
+def BackupAplikasiApprove(request, pk):
+    laporan_bmn = LaporanBmn.objects.get(pk=pk)
+    laporan_bmn.approval = 1
+    laporan_bmn.save()
+    return redirect('laporan_bmn_list')
+
+#
+class LaporanBmnList(ListView):
+    model = LaporanBmn
+    template_name = 'arsip/laporan_bmn/laporan_bmn_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_user'] = self.request.user
+        return context
+
+
+class LaporanBmnCreate(CreateView):
+    model = LaporanBmn
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
+    template_name = 'arsip/laporan_bmn/laporan_bmn_form.html'
+
+    success_url = reverse_lazy('laporan_bmn_list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(LaporanBmnCreate, self).form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(attrs={'type': 'date'})
+        return form
+
+
+class LaporanBmnDetail(DetailView):
+    model = LaporanBmn
+    template_name = 'arsip/laporan_bmn/laporan_bmn_detail.html'
+
+
+class LaporanBmnUpdate(UpdateView):
+    model = LaporanBmn
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
+    template_name = 'arsip/laporan_bmn/laporan_bmn_form.html'
+    success_url = reverse_lazy('laporan_bmn_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
+
+
+class LaporanBmnDelete(DeleteView):
+    model = LaporanBmn
+    template_name = 'arsip/laporan_bmn/laporan_bmn_confirm_delete.html'
+    success_url = reverse_lazy('laporan_bmn_list')
+
+
+def LaporanBmnApprove(request, pk):
+    laporan_bmn = LaporanBmn.objects.get(pk=pk)
+    laporan_bmn.approval = 1
+    laporan_bmn.save()
+    return redirect('laporan_bmn_list')
+
+
+#
+class LaporanKinerjaList(ListView):
+    model = LaporanKinerja
+    template_name = 'arsip/laporan_kinerja/laporan_kinerja_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_user'] = self.request.user
+        return context
+
+
+class LaporanKinerjaCreate(CreateView):
+    model = LaporanKinerja
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
+    template_name = 'arsip/laporan_kinerja/laporan_kinerja_form.html'
+
+    success_url = reverse_lazy('laporan_kinerja_list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(LaporanKinerjaCreate, self).form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(attrs={'type': 'date'})
+        return form
+
+
+class LaporanKinerjaDetail(DetailView):
+    model = LaporanKinerja
+    template_name = 'arsip/laporan_kinerja/laporan_kinerja_detail.html'
+
+
+class LaporanKinerjaUpdate(UpdateView):
+    model = LaporanKinerja
+    fields = ['kategori', 'periode', 'keterangan', 'upload']
+    template_name = 'arsip/laporan_kinerja/laporan_kinerja_form.html'
+    success_url = reverse_lazy('laporan_kinerja_list')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['periode'].widget = forms.DateInput(
+            attrs={'type': 'date'})
+        return form
+
+
+class LaporanKinerjaDelete(DeleteView):
+    model = LaporanKinerja
+    template_name = 'arsip/laporan_kinerja/laporan_kinerja_confirm_delete.html'
+    success_url = reverse_lazy('laporan_kinerja_list')
+
+
+def LaporanKinerjaApprove(request, pk):
+    laporan_kinerja = LaporanKinerja.objects.get(pk=pk)
+    laporan_kinerja.approval = 1
+    laporan_kinerja.save()
+    return redirect('laporan_kinerja_list')
 
 # SKPA View
 
@@ -113,6 +230,7 @@ class SkpaUpdate(UpdateView):
 
 class SkpaDelete(DeleteView):
     model = Surat
+    template_name = 'arsip/skpa/skpa_confirm_delete.html'
     success_url = reverse_lazy('skpa_list')
 
 
@@ -145,7 +263,7 @@ class DipaCreate(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super(DipaCreate, self).form_valid(form)
-    
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         form.fields['tanggal'].widget = forms.DateInput(
@@ -173,6 +291,7 @@ class DipaUpdate(UpdateView):
 
 class DipaDelete(DeleteView):
     model = Dipa
+    template_name = 'arsip/dipa/dipa_confirm_delete.html'
     success_url = reverse_lazy('dipa_list')
 
 
@@ -231,6 +350,7 @@ class SpmUpdate(UpdateView):
 
 class SpmDelete(DeleteView):
     model = Spm
+    template_name = 'arsip/spm/spm_confirm_delete.html'
     success_url = reverse_lazy('spm_list')
 
 
@@ -255,7 +375,8 @@ class TupList(ListView):
 
 class TupCreate(CreateView):
     model = Tup
-    fields = ['kategori', 'nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['kategori', 'nomor', 'keterangan',
+              'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
 
     success_url = reverse_lazy('tup_list')
@@ -278,7 +399,8 @@ class TupDetail(DetailView):
 
 class TupUpdate(UpdateView):
     model = Tup
-    fields = ['kategori', 'nomor', 'keterangan', 'tanggal_surat', 'jumlah_tup', 'upload']
+    fields = ['kategori', 'nomor', 'keterangan',
+              'tanggal_surat', 'jumlah_tup', 'upload']
     template_name = 'arsip/tup/tup_form.html'
     success_url = reverse_lazy('tup_list')
 
@@ -291,6 +413,7 @@ class TupUpdate(UpdateView):
 
 class TupDelete(DeleteView):
     model = Tup
+    template_name = 'arsip/tup/tup_confirm_delete.html'
     success_url = reverse_lazy('tup_list')
 
 
@@ -352,6 +475,7 @@ class SurveiUpdate(UpdateView):
 
 class SurveiDelete(DeleteView):
     model = Survei
+    template_name = 'arsip/daftar-sampel/daftarsampel_confirm_delete.html'
     success_url = reverse_lazy('survei_list')
 
 
@@ -413,6 +537,7 @@ class DaftarSampelUpdate(UpdateView):
 
 class DaftarSampelDelete(DeleteView):
     model = DaftarSampel
+    template_name = 'arsip/survei/survei_confirm_delete.html'
     success_url = reverse_lazy('daftar_sampel_list')
 
 
